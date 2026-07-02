@@ -1,0 +1,1748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Abdullah Ansari — Senior SharePoint & Power Platform Developer</title>
+<meta name="description" content="Abdullah Ansari is a Senior SharePoint & Power Platform developer with 7+ years designing, migrating, and running enterprise intranets across banking, energy, and government sectors." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   DESIGN TOKENS
+   Palette: paper (#f6f4f1 warm off-white, not pure white — softer
+   against the plum) / ink (#111011) / void (#0a0a0b) / plum (#61456a)
+   / plum-soft (#8a6a93) / hairline / mono for data labels.
+   Display face: Bricolage Grotesque (bouncy, characterful, not the
+   generic geometric-sans-of-the-month). Body: Inter. Data/labels: JetBrains Mono.
+   ============================================================ */
+:root{
+  --paper:#f6f4f1;
+  --paper-dim:#efece7;
+  --ink:#121113;
+  --ink-soft:#4a4750;
+  --void:#0a0a0b;
+  --void-soft:#151417;
+  --plum:#61456a;
+  --plum-soft:#8a6a93;
+  --plum-bright:#a97fb5;
+  --line: rgba(18,17,19,0.10);
+  --line-dark: rgba(246,244,241,0.12);
+  --glow: rgba(97,69,106,0.35);
+
+  --f-display:'Bricolage Grotesque', system-ui, sans-serif;
+  --f-body:'Inter', system-ui, sans-serif;
+  --f-mono:'JetBrains Mono', monospace;
+
+  --container: 1280px;
+  --pad: clamp(1.25rem, 4vw, 3rem);
+  --ease-out: cubic-bezier(.16,1,.3,1);
+  --ease-in-out: cubic-bezier(.65,0,.35,1);
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:auto;}
+html.lenis, html.lenis body{height:auto;}
+html.no-js-scroll{overflow:hidden;}
+
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--f-body);
+  font-size:16px;
+  line-height:1.5;
+  overflow-x:hidden;
+  cursor:none;
+}
+@media (max-width:900px), (hover:none){
+  body{cursor:auto;}
+  .cursor-dot,.cursor-ring{display:none !important;}
+}
+
+::selection{background:var(--plum); color:var(--paper);}
+
+a{color:inherit; text-decoration:none;}
+img{max-width:100%; display:block;}
+button{font-family:inherit; cursor:pointer; background:none; border:none; color:inherit;}
+ul{list-style:none;}
+
+.container{max-width:var(--container); margin:0 auto; padding-left:var(--pad); padding-right:var(--pad);}
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important;}
+}
+
+/* ============================================================
+   HERO
+============================================================ */
+#hero{
+  min-height:100svh; display:flex; flex-direction:column; justify-content:flex-end;
+  padding-top:8rem; padding-bottom:2.5rem; overflow:hidden; background:var(--paper);
+}
+#hero-canvas{position:absolute; inset:0; width:100%; height:100%; z-index:0;}
+.hero-inner{position:relative; z-index:2;}
+.hero-kicker{display:flex; align-items:center; gap:0.9rem; margin-bottom:1.5rem; flex-wrap:wrap;}
+.hero-kicker .avail-dot{width:8px; height:8px; border-radius:50%; background:#3fae5f; box-shadow:0 0 0 4px rgba(63,174,95,0.18); flex:none;}
+.hero-kicker .eyebrow{flex-wrap:wrap; row-gap:0.3rem;}
+.hero-title{
+  font-size:clamp(3rem, 9vw, 7.5rem); line-height:0.94; letter-spacing:-0.03em; width:970px;
+}
+.hero-title .line{display:block; overflow:hidden;}
+.hero-title .line span{display:inline-block;}
+.hero-title .accent{font-style:italic; font-weight:400; color:var(--plum);}
+.hero-sub{
+  display:grid; grid-template-columns: 1.2fr 0.8fr; gap:2rem; align-items:end;
+  margin-top:2.25rem; padding-top:2.25rem; border-top:1px solid var(--line);
+}
+.hero-sub p{font-size:1.05rem; color:var(--ink-soft); max-width:38ch;}
+.hero-actions{display:flex; gap:1rem; justify-content:flex-end; flex-wrap:wrap;}
+.scroll-indicator{
+  position:absolute; right:var(--pad); bottom:2.5rem; z-index:2;
+  display:flex; flex-direction:column; align-items:center; gap:0.6rem;
+  font-family:var(--f-mono); font-size:0.68rem; letter-spacing:0.15em; color:var(--ink-soft);
+  writing-mode:vertical-rl;
+}
+.scroll-indicator .stick{width:1px; height:44px; background:var(--line); position:relative; overflow:hidden; writing-mode:horizontal-tb;}
+.scroll-indicator .stick::after{content:''; position:absolute; top:-100%; left:0; width:100%; height:100%; background:var(--plum); animation:scrollstick 1.8s var(--ease-in-out) infinite;}
+@keyframes scrollstick{ 0%{top:-100%;} 50%{top:0%;} 100%{top:100%;} }
+
+@media (max-width:760px){
+  .hero-sub{grid-template-columns:1fr;}
+  .hero-actions{justify-content:flex-start;}
+  .scroll-indicator{display:none;}
+}
+@media (max-width:420px){
+  #hero{padding-top:6.5rem;}
+  .hero-title{font-size:clamp(2.35rem,11vw,3rem); letter-spacing:-0.02em;}
+  .hero-kicker .eyebrow{font-size:0.68rem;}
+  .hero-actions{width:100%;}
+  .hero-actions .btn{flex:1 1 auto; justify-content:center;}
+}
+
+/* ============================================================
+   ABOUT
+============================================================ */
+.about-grid{display:grid; grid-template-columns: 0.9fr 1.1fr; gap:clamp(2rem,6vw,5rem); align-items:start;}
+
+/* Animated farm-architecture diagram — replaces a generic portrait.
+   Nodes represent a real SharePoint topology (WFE / App / SQL / Cache / Search)
+   with pulsing connections and a migration path, echoing the actual work
+   described in the copy rather than decorating an empty box. */
+.about-visual{
+  position:relative; aspect-ratio:4/5; border-radius:18px; overflow:hidden;
+  background:linear-gradient(155deg, var(--plum) 0%, #201823 100%);
+  display:flex; flex-direction:column; justify-content:space-between;
+}
+.about-visual .grain{position:absolute; inset:0; mix-blend-mode:overlay; opacity:.4;}
+.about-visual .diagram-tag{
+  position:relative; z-index:2; padding:1.4rem 1.4rem 0;
+  font-family:var(--f-mono); font-size:0.66rem; letter-spacing:0.1em; text-transform:uppercase;
+  color:rgba(246,244,241,0.55);
+}
+.farm-svg{position:relative; z-index:2; width:100%; flex:1;}
+.farm-svg .fs-line{
+  fill:none; stroke:rgba(246,244,241,0.35); stroke-width:1; stroke-dasharray:4 5;
+  animation:dashflow 3.2s linear infinite;
+}
+.farm-svg .fs-line.core{stroke:rgba(169,127,181,0.65); stroke-width:1.3;}
+@keyframes dashflow{ to{ stroke-dashoffset:-90; } }
+.farm-svg .fs-node{ fill:#201823; stroke:rgba(246,244,241,0.5); stroke-width:1.2; }
+.farm-svg .fs-node.core{ fill:var(--plum-bright); stroke:none; }
+.farm-svg .fs-pulse{ fill:none; stroke:var(--plum-bright); stroke-width:1.4; opacity:0; transform-origin:center; transform-box:fill-box; }
+.farm-svg .fs-pulse.p1{ animation:pulse 2.6s ease-out infinite; }
+.farm-svg .fs-pulse.p2{ animation:pulse 2.6s ease-out infinite 0.9s; }
+.farm-svg .fs-pulse.p3{ animation:pulse 2.6s ease-out infinite 1.8s; }
+@keyframes pulse{ 0%{opacity:0.7; transform:scale(0.3);} 100%{opacity:0; transform:scale(2.4);} }
+.farm-svg .fs-label{
+  font-family:var(--f-mono); font-size:5px; fill:rgba(246,244,241,0.75); letter-spacing:0.03em;
+}
+.farm-svg .fs-node-group{ animation:floaty 6s ease-in-out infinite; }
+.farm-svg .fs-node-group.g2{ animation-delay:-2s; }
+.farm-svg .fs-node-group.g3{ animation-delay:-4s; }
+@keyframes floaty{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-3px); } }
+.about-visual .diagram-caption{
+  position:relative; z-index:2; padding:0 1.4rem 1.4rem; display:flex; justify-content:space-between; align-items:flex-end;
+  font-family:var(--f-mono); font-size:0.66rem; color:rgba(246,244,241,0.6); letter-spacing:0.04em;
+}
+.about-visual .diagram-caption strong{color:rgba(246,244,241,0.92); font-weight:500;}
+@media (prefers-reduced-motion: reduce){
+  .farm-svg .fs-line, .fs-pulse, .fs-node-group{animation:none !important;}
+}
+
+.about-copy p{font-size:1.15rem; color:var(--ink-soft); margin-bottom:1.35rem; max-width:56ch;}
+.about-copy p strong{color:var(--ink); font-weight:600;}
+.about-stats{display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-top:3rem; padding-top:2.25rem; border-top:1px solid var(--line);}
+.stat b{font-family:var(--f-display); font-size:clamp(2.1rem,4vw,3rem); display:block; letter-spacing:-0.02em;}
+.stat span{font-family:var(--f-mono); font-size:0.72rem; color:var(--ink-soft); letter-spacing:0.06em; text-transform:uppercase;}
+
+@media (max-width:840px){
+  .about-grid{grid-template-columns:1fr;}
+  .about-stats{grid-template-columns:repeat(3,1fr); gap:1rem;}
+}
+
+/* ============================================================
+   SKILLS
+============================================================ */
+#skills{background:var(--void); color:var(--paper); position:relative;}
+#skills::before{
+  content:''; position:absolute; top:-10%; right:-10%; width:50%; height:60%;
+  background:radial-gradient(circle, var(--glow) 0%, transparent 70%);
+  filter:blur(60px); pointer-events:none;
+}
+.skills-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; position:relative; z-index:1;}
+.skill-card{
+  background:rgba(246,244,241,0.045);
+  border:1px solid rgba(246,244,241,0.1);
+  border-radius:16px; padding:1.75rem;
+  backdrop-filter:blur(10px);
+  transition:border-color .4s, transform .4s var(--ease-out), background .4s;
+}
+.skill-card:hover{border-color:rgba(169,127,181,0.5); transform:translateY(-4px); background:rgba(246,244,241,0.07);}
+.skill-card h3{font-size:1rem; font-family:var(--f-mono); text-transform:uppercase; letter-spacing:0.08em; font-weight:500; color:var(--plum-bright); margin-bottom:1.4rem;}
+.skill-row{margin-bottom:1.1rem;}
+.skill-row:last-child{margin-bottom:0;}
+.skill-row .lbl{display:flex; justify-content:space-between; font-size:0.85rem; margin-bottom:0.5rem; color:rgba(246,244,241,0.85);}
+.skill-row .lbl span:last-child{font-family:var(--f-mono); font-size:0.72rem; color:rgba(246,244,241,0.4);}
+.skill-track{height:3px; background:rgba(246,244,241,0.1); border-radius:3px; overflow:hidden;}
+.skill-fill{height:100%; width:0%; background:linear-gradient(90deg, var(--plum), var(--plum-bright)); border-radius:3px; transition:width 1.4s var(--ease-out);}
+
+@media (max-width:900px){ .skills-grid{grid-template-columns:1fr 1fr;} }
+@media (max-width:600px){ .skills-grid{grid-template-columns:1fr;} }
+
+/* ============================================================
+   WORK — SELECTED ENGAGEMENTS (accordion list)
+   Swapped out the gradient-card grid: enterprise SharePoint work
+   has no live demo/GitHub to show, so a card built for that metaphor
+   read as empty theatre. An expandable index — closer to a case-study
+   ledger — actually fits engagements that are internal, on-prem,
+   and NDA-shaped.
+============================================================ */
+.work-list{border-top:1px solid var(--line);}
+.work-item{border-bottom:1px solid var(--line); transition:opacity .3s, max-height .3s;}
+.work-item.hide{display:none;}
+.work-head{
+  width:100%; display:grid; grid-template-columns:44px 30px 1fr auto 20px; gap:1.25rem; align-items:center;
+  padding:1.6rem 0; text-align:left; transition:background .3s;
+}
+.work-head:hover{background:rgba(97,69,106,0.035);}
+.work-num{font-family:var(--f-mono); font-size:0.78rem; color:var(--plum);}
+.work-flag{font-size:1.35rem; line-height:1;}
+.work-title-wrap{min-width:0;}
+.work-title{font-family:var(--f-display); font-size:clamp(1.05rem,2vw,1.35rem); font-weight:600; display:block; transition:color .3s;}
+.work-head:hover .work-title{color:var(--plum);}
+.work-sub{font-family:var(--f-mono); font-size:0.72rem; color:var(--ink-soft); letter-spacing:0.02em; display:block; margin-top:0.35rem;}
+.work-tags-mini{display:flex; gap:0.4rem; flex-wrap:wrap; justify-content:flex-end; max-width:260px;}
+.work-tags-mini span{font-family:var(--f-mono); font-size:0.64rem; padding:0.28rem 0.55rem; border-radius:100px; background:var(--line); color:var(--ink-soft); white-space:nowrap;}
+@media (max-width:820px){ .work-tags-mini{display:none;} }
+.work-chevron{width:20px; height:20px; display:flex; align-items:center; justify-content:center; transition:transform .4s var(--ease-out);}
+.work-item.open .work-chevron{transform:rotate(135deg);}
+.work-chevron svg{width:12px; height:12px;}
+
+.work-body{display:grid; grid-template-rows:0fr; transition:grid-template-rows .5s var(--ease-out);}
+.work-item.open .work-body{grid-template-rows:1fr;}
+.work-body-inner{overflow:hidden;}
+.work-body-content{
+  padding:0.25rem 0 2.25rem 5.75rem; display:grid; grid-template-columns:1.5fr 1fr; gap:2.5rem;
+}
+.work-body-content p{color:var(--ink-soft); font-size:0.98rem; max-width:52ch;}
+.work-meta{display:flex; flex-direction:column; gap:1rem;}
+.work-meta .wm-row{font-size:0.88rem;}
+.work-meta .wm-label{display:block; font-family:var(--f-mono); font-size:0.66rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--plum); margin-bottom:0.3rem;}
+.work-tags-full{display:flex; flex-wrap:wrap; gap:0.4rem;}
+.work-tags-full span{font-family:var(--f-mono); font-size:0.68rem; padding:0.32rem 0.65rem; border-radius:100px; border:1px solid var(--line); color:var(--ink-soft);}
+
+@media (max-width:760px){
+  .work-head{grid-template-columns:32px 26px 1fr 20px; gap:0.85rem;}
+  .work-body-content{grid-template-columns:1fr; padding-left:0; gap:1.25rem;}
+}
+
+/* ============================================================
+   EXPERIENCE TIMELINE
+============================================================ */
+#experience{background:var(--paper-dim);}
+.timeline{position:relative; max-width:820px;}
+.timeline::before{
+  content:''; position:absolute; left:10px; top:6px; bottom:6px; width:1px; background:var(--line);
+}
+.timeline-item{position:relative; padding-left:3.2rem; padding-bottom:3.25rem;}
+.timeline-item:last-child{padding-bottom:0;}
+.timeline-dot{
+  position:absolute; left:3px; top:5px; width:15px; height:15px; border-radius:50%;
+  background:var(--paper-dim); border:2px solid var(--plum); z-index:1;
+}
+.timeline-item.current .timeline-dot{background:var(--plum);}
+.t-head{display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.5rem;}
+.t-head h3{font-size:1.4rem;}
+.t-head .t-date{font-family:var(--f-mono); font-size:0.75rem; color:var(--plum); letter-spacing:0.06em;}
+.timeline-item .t-role{font-size:0.85rem; color:var(--ink-soft); font-weight:600; margin-bottom:0.6rem;}
+.timeline-item p{color:var(--ink-soft); max-width:56ch;}
+
+/* ============================================================
+   SERVICES
+============================================================ */
+.services-list{border-top:1px solid var(--line);}
+.service-row{
+  display:grid; grid-template-columns:80px 1fr 220px; gap:2rem; align-items:center;
+  padding:2.1rem 0; border-bottom:1px solid var(--line);
+  transition:background .35s;
+}
+.service-row:hover{background:rgba(97,69,106,0.035);}
+.service-row .num{font-family:var(--f-mono); color:var(--plum); font-size:0.85rem;}
+.service-row h3{font-size:1.55rem; margin-bottom:0.4rem;}
+.service-row p{color:var(--ink-soft); max-width:52ch; font-size:0.95rem;}
+.service-row .s-tags{display:flex; flex-wrap:wrap; gap:0.4rem; justify-content:flex-end;}
+.service-row .s-tags span{font-family:var(--f-mono); font-size:0.65rem; color:var(--ink-soft); border:1px solid var(--line); padding:0.3rem 0.6rem; border-radius:100px;}
+@media (max-width:760px){
+  .service-row{grid-template-columns:1fr; gap:0.6rem;}
+  .service-row .s-tags{justify-content:flex-start;}
+}
+
+/* ============================================================
+   TESTIMONIALS
+============================================================ */
+#testimonials{background:var(--void); color:var(--paper);}
+.t-carousel{position:relative; max-width:760px; margin:0 auto; text-align:center;}
+.t-slide{display:none;}
+.t-slide.active{display:block; animation:fadein .6s var(--ease-out);}
+@keyframes fadein{from{opacity:0; transform:translateY(12px);} to{opacity:1; transform:translateY(0);}}
+.t-quote{font-family:var(--f-display); font-size:clamp(1.4rem,3vw,2.1rem); font-weight:400; line-height:1.35; letter-spacing:-0.01em;}
+.t-person{margin-top:2rem; font-family:var(--f-mono); font-size:0.78rem; color:var(--plum-bright); letter-spacing:0.04em;}
+.t-person span{color:rgba(246,244,241,0.5);}
+.t-dots{display:flex; justify-content:center; gap:0.6rem; margin-top:2.5rem;}
+.t-dots button{width:8px; height:8px; border-radius:50%; background:rgba(246,244,241,0.25); background-clip:content-box; padding:12px; margin:-12px; transition:background .3s, transform .3s;}
+.t-dots button.active{background:var(--plum-bright); transform:scale(1.3);}
+
+/* ============================================================
+   TECH MARQUEE
+============================================================ */
+.marquee-wrap{overflow:hidden; border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:2.5rem 0;}
+.marquee-track{display:flex; gap:4rem; width:max-content; animation:marquee 28s linear infinite;}
+.marquee-track span{
+  font-family:var(--f-display); font-size:clamp(1.5rem,3vw,2.3rem); color:var(--ink-soft); white-space:nowrap;
+  display:flex; align-items:center; gap:1rem; transition:color .3s;
+}
+.marquee-track span:hover{color:var(--plum);}
+.marquee-track span::after{content:'✦'; font-size:1rem; color:var(--line); margin-left:2rem;}
+@keyframes marquee{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+.marquee-wrap:hover .marquee-track{animation-play-state:paused;}
+
+/* ============================================================
+   CONTACT
+============================================================ */
+.contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:clamp(2rem,6vw,5rem);}
+.contact-info p{color:var(--ink-soft); max-width:42ch; margin-top:1rem; font-size:1.05rem;}
+.contact-links{margin-top:2.5rem; display:flex; flex-direction:column; gap:0.9rem;}
+.contact-links a{
+  display:flex; align-items:center; justify-content:space-between; padding:1rem 0;
+  border-bottom:1px solid var(--line); font-family:var(--f-mono); font-size:0.85rem;
+}
+.contact-links a:hover{color:var(--plum);}
+.contact-links a svg{width:14px; height:14px; transition:transform .3s;}
+.contact-links a:hover svg{transform:translate(3px,-3px);}
+.copy-email{display:inline-flex; align-items:center; gap:0.5rem; margin-top:1.5rem; font-family:var(--f-mono); font-size:0.82rem; color:var(--ink-soft); border:1px solid var(--line); padding:0.6rem 1rem; border-radius:100px;}
+.copy-email:hover{border-color:var(--plum); color:var(--plum);}
+
+.form-group{margin-bottom:1.4rem;}
+.form-group label{display:block; font-family:var(--f-mono); font-size:0.7rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--ink-soft); margin-bottom:0.6rem;}
+.form-group input, .form-group textarea{
+  width:100%; background:transparent; border:none; border-bottom:1px solid var(--line);
+  padding:0.7rem 0; font-family:var(--f-body); font-size:1.02rem; color:var(--ink); transition:border-color .3s;
+}
+.form-group input:focus, .form-group textarea:focus{outline:none; border-color:var(--plum);}
+.form-group textarea{resize:vertical; min-height:100px;}
+.form-error{font-size:0.75rem; color:#b3413f; font-family:var(--f-mono); margin-top:0.4rem; min-height:1em;}
+.form-status{margin-top:1rem; font-family:var(--f-mono); font-size:0.82rem; color:var(--plum);}
+
+@media (max-width:800px){ .contact-grid{grid-template-columns:1fr;} }
+
+/* ============================================================
+   FOOTER
+============================================================ */
+footer{background:var(--void); color:rgba(246,244,241,0.7); padding:3.5rem 0 2rem;}
+.footer-top{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:2rem; padding-bottom:2.5rem; border-bottom:1px solid var(--line-dark);}
+.footer-logo{font-family:var(--f-display); font-size:1.6rem; color:var(--paper);}
+.footer-social{display:flex; gap:1.5rem;}
+.footer-social a{font-family:var(--f-mono); font-size:0.78rem; color:rgba(246,244,241,0.6); position:relative;}
+.footer-social a:hover{color:var(--plum-bright);}
+.footer-bottom{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; padding-top:1.75rem; font-family:var(--f-mono); font-size:0.72rem; color:rgba(246,244,241,0.4);}
+#backToTop{display:flex; align-items:center; gap:0.5rem; color:rgba(246,244,241,0.6); transition:color .3s;}
+#backToTop:hover{color:var(--plum-bright);}
+#backToTop svg{width:14px; height:14px;}
+
+/* ============================================================
+   COMMAND PALETTE (easter egg — press Cmd/Ctrl+K)
+============================================================ */
+#cmdk-overlay{
+  position:fixed; inset:0; background:rgba(10,10,11,0.6); backdrop-filter:blur(4px); z-index:3000;
+  display:flex; align-items:flex-start; justify-content:center; padding-top:14vh;
+  opacity:0; pointer-events:none; transition:opacity .25s;
+}
+#cmdk-overlay.open{opacity:1; pointer-events:auto;}
+.cmdk-box{background:var(--paper); width:min(520px,90vw); border-radius:14px; overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,0.4);}
+.cmdk-box input{width:100%; border:none; padding:1.1rem 1.4rem; font-size:1rem; font-family:var(--f-body); border-bottom:1px solid var(--line); background:transparent;}
+.cmdk-box input:focus{outline:none;}
+.cmdk-list{max-height:280px; overflow-y:auto;}
+.cmdk-item{padding:0.9rem 1.4rem; font-size:0.9rem; display:flex; justify-content:space-between; cursor:pointer;}
+.cmdk-item:hover, .cmdk-item.sel{background:var(--paper-dim); color:var(--plum);}
+.cmdk-item span{font-family:var(--f-mono); font-size:0.68rem; color:var(--ink-soft);}
+
+/* Focus visibility */
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
+  outline:2px solid var(--plum);
+  outline-offset:4px;
+  border-radius:2px;
+}
+
+/* ============================================================
+   TYPOGRAPHY
+============================================================ */
+h1,h2,h3,h4{font-family:var(--f-display); font-weight:600; letter-spacing:-0.02em; line-height:1.02;}
+.eyebrow{
+  font-family:var(--f-mono); font-size:0.75rem; letter-spacing:0.14em; text-transform:uppercase;
+  color:var(--plum); display:flex; align-items:center; gap:0.6em; font-weight:500;
+}
+.eyebrow::before{content:''; width:6px; height:6px; border-radius:50%; background:var(--plum); display:inline-block; flex:none;}
+
+.section-head{max-width:640px; margin-bottom:clamp(2.5rem,6vw,5rem);}
+.section-head h2{font-size:clamp(2.25rem,5vw,3.75rem); margin-top:0.9rem;}
+.section-head p{margin-top:1.25rem; font-size:1.05rem; color:var(--ink-soft); max-width:46ch;}
+
+section{position:relative; padding:clamp(5rem,12vw,9rem) 0;}
+.section-dark{background:var(--void); color:var(--paper);}
+.section-dark .ink-soft, .section-dark .section-head p{color:rgba(246,244,241,0.65);}
+.section-dark .eyebrow{color:var(--plum-bright);}
+.section-dark .eyebrow::before{background:var(--plum-bright);}
+
+/* split text reveal spans */
+.reveal-line{overflow:hidden; display:block;}
+.reveal-line > span{display:inline-block; will-change:transform;}
+
+/* Buttons */
+.btn{
+  position:relative; display:inline-flex; align-items:center; gap:0.6rem;
+  font-family:var(--f-mono); font-size:0.8rem; letter-spacing:0.06em; text-transform:uppercase;
+  padding:1rem 1.6rem; border-radius:100px; overflow:hidden; isolation:isolate;
+}
+.btn-primary{background:var(--ink); color:var(--paper);}
+.btn-primary::before{
+  content:''; position:absolute; inset:0; background:var(--plum); z-index:-1;
+  transform:translateY(101%); transition:transform .5s var(--ease-out);
+}
+.btn-primary:hover::before{transform:translateY(0);}
+.btn-ghost{border:1px solid var(--line);}
+.section-dark .btn-ghost{border-color:var(--line-dark);}
+.btn-ghost:hover{border-color:var(--plum);}
+.btn svg{width:14px; height:14px; transition:transform .4s var(--ease-out);}
+.btn:hover svg{transform:translate(3px,-3px);}
+
+/* magnetic wrapper just needs relative pos, JS handles transform */
+[data-magnetic]{display:inline-block;}
+
+/* ============================================================
+   CURSOR
+============================================================ */
+.cursor-dot, .cursor-ring{
+  position:fixed; top:0; left:0; pointer-events:none; z-index:9999;
+  border-radius:50%; transform:translate(-50%,-50%);
+}
+.cursor-dot{width:6px; height:6px; background:var(--ink); transition:background .3s;}
+.cursor-ring{
+  width:36px; height:36px; border:1px solid var(--ink);
+  transition:width .3s var(--ease-out), height .3s var(--ease-out), border-color .3s, background .3s, opacity .3s;
+}
+body.cursor-dark .cursor-dot{background:var(--paper);}
+body.cursor-dark .cursor-ring{border-color:var(--paper);}
+.cursor-ring.hover{width:64px; height:64px; background:rgba(97,69,106,0.08); border-color:var(--plum);}
+.cursor-ring.hidden, .cursor-dot.hidden{opacity:0;}
+
+/* ============================================================
+   LOADER
+============================================================ */
+#loader{
+  position:fixed; inset:0; z-index:10000; background:var(--void);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1.5rem;
+}
+#loader .mark{font-family:var(--f-display); font-size:clamp(1.5rem,7vw,3rem); color:var(--paper); letter-spacing:-0.02em; max-width:90vw; text-align:center;}
+#loader .mark em{font-style:normal; color:var(--plum-bright);}
+#loader .bar-track{width:min(240px,60vw); height:2px; background:rgba(246,244,241,0.15); overflow:hidden; border-radius:2px;}
+#loader .bar-fill{width:0%; height:100%; background:var(--plum-bright);}
+#loader .pct{font-family:var(--f-mono); font-size:0.75rem; color:rgba(246,244,241,0.5); letter-spacing:0.1em;}
+
+/* Progress bar */
+#scroll-progress{
+  position:fixed; top:0; left:0; height:2px; background:var(--plum); z-index:200; width:0%;
+}
+
+/* ============================================================
+   NAVBAR
+============================================================ */
+#navbar{
+  position:fixed; top:0; left:0; right:0; z-index:500;
+  display:flex; justify-content:center;
+  padding-top:calc(1.25rem + env(safe-area-inset-top, 0px));
+  transition:padding .4s var(--ease-out);
+}
+.nav-inner{
+  width:min(1100px, calc(100% - 2.5rem));
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0.85rem 1.4rem;
+  border-radius:100px;
+  border:1px solid transparent;
+  transition:background .4s var(--ease-out), border-color .4s, box-shadow .4s, backdrop-filter .4s;
+}
+#navbar.scrolled .nav-inner{
+  background:rgba(246,244,241,0.7);
+  backdrop-filter:blur(16px) saturate(160%);
+  -webkit-backdrop-filter:blur(16px) saturate(160%);
+  border-color:var(--line);
+  box-shadow:0 8px 30px rgba(18,17,19,0.06);
+}
+.nav-logo{font-family:var(--f-display); font-weight:700; font-size:1.05rem; letter-spacing:-0.01em; display:flex; align-items:center; gap:0.5rem; white-space:nowrap;}
+.nav-logo .dot{width:7px; height:7px; border-radius:50%; background:var(--plum); display:inline-block; flex:none;}
+.nav-links{display:flex; gap:2.1rem; font-size:0.86rem; font-weight:500;}
+.nav-links a{position:relative; padding:0.2rem 0; color:var(--ink-soft); transition:color .3s;}
+.nav-links a::after{content:''; position:absolute; left:0; bottom:-2px; width:0; height:1px; background:var(--plum); transition:width .35s var(--ease-out);}
+.nav-links a.active, .nav-links a:hover{color:var(--ink);}
+.nav-links a.active::after, .nav-links a:hover::after{width:100%;}
+.nav-cta{display:flex; align-items:center; gap:1rem;}
+.nav-cta .btn{padding:0.7rem 1.25rem; font-size:0.72rem;}
+.nav-burger{
+  display:none; flex-direction:column; gap:5px; width:24px; padding:10px; margin:-10px;
+  -webkit-tap-highlight-color:transparent;
+}
+.nav-burger span{height:2px; background:var(--ink); border-radius:2px; transition:transform .35s var(--ease-out), opacity .3s; transform-origin:center;}
+
+/* --- Responsive navbar: collapse to hamburger below tablet width --- */
+@media (max-width:860px){
+  .nav-links{display:none;}
+  .nav-cta .btn-primary{display:none;}
+  .nav-burger{display:flex;}
+  .nav-inner{padding:0.75rem 1.1rem;}
+}
+@media (max-width:420px){
+  #navbar{padding-top:calc(0.9rem + env(safe-area-inset-top, 0px));}
+  .nav-inner{width:calc(100% - 1.25rem); padding:0.65rem 0.9rem;}
+  .nav-logo{font-size:0.92rem;}
+}
+
+.mobile-menu{
+  position:fixed; inset:0; background:var(--void); z-index:490;
+  display:flex; flex-direction:column; justify-content:center;
+  padding:2.5rem;
+  padding-top:calc(2.5rem + env(safe-area-inset-top, 0px));
+  padding-bottom:calc(2.5rem + env(safe-area-inset-bottom, 0px));
+  transform:translateY(-100%); visibility:hidden;
+  transition:transform .55s var(--ease-in-out), visibility 0s linear .55s;
+  overflow-y:auto;
+}
+.mobile-menu.open{
+  transform:translateY(0); visibility:visible;
+  transition:transform .55s var(--ease-in-out), visibility 0s linear 0s;
+}
+.mobile-menu a{font-family:var(--f-display); font-size:clamp(1.8rem,8vw,2.4rem); color:var(--paper); padding:0.65rem 0; display:block; opacity:0.85;}
+.mobile-menu a:hover, .mobile-menu a:focus-visible{opacity:1; color:var(--plum-bright);}
+@media (max-width:360px){
+  .mobile-menu{padding-left:1.5rem; padding-right:1.5rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ LOADER ============ -->
+<div id="loader" aria-hidden="true">
+  <div class="mark">ABDULLAH<em>.</em>ANSARI</div>
+  <div class="bar-track"><div class="bar-fill" id="loaderBar"></div></div>
+  <div class="pct" id="loaderPct">00%</div>
+</div>
+
+<div id="scroll-progress"></div>
+
+<!-- custom cursor -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- ============ NAVBAR ============ -->
+<header id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo" data-magnetic><span class="dot"></span>Abdullah Ansari</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn-primary" data-magnetic>Let's talk</a>
+      <button class="nav-burger" id="burgerBtn" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about">01 — About</a>
+  <a href="#skills">02 — Skills</a>
+  <a href="#work">03 — Work</a>
+  <a href="#experience">04 — Experience</a>
+  <a href="#contact">05 — Contact</a>
+</div>
+
+<main id="smooth-wrapper">
+<div id="smooth-content">
+
+<!-- ============ HERO ============ -->
+<section id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="container hero-inner">
+    <div class="hero-kicker">
+      <span class="avail-dot"></span>
+      <span class="eyebrow" style="color:var(--ink-soft);"><span style="display:none"></span>Senior SharePoint Consultant — Sharjah City Municipality, U.A.E.</span>
+    </div>
+    <h1 class="hero-title" id="heroTitle">
+      <span class="line"><span>Architecting</span></span>
+      <span class="line"><span><em class="accent">SharePoint</em></span></span>
+      <span class="line"><span>at enterprise level.</span></span>
+    </h1>
+    <div class="hero-sub">
+      <p data-fade>I'm Abdullah Ansari, a Senior SharePoint &amp; Power Platform developer with 7+ years designing, migrating, and running enterprise intranets — from bank HR portals to government approval systems across the Gulf and South Asia.</p>
+      <div class="hero-actions">
+        <a href="#work" class="btn btn-primary" data-magnetic>
+          View engagements
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+        </a>
+        <a href="#contact" class="btn btn-ghost" data-magnetic>Get in touch</a>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator"><span>SCROLL</span><span class="stick"></span></div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about">
+  <div class="container about-grid">
+    <div data-fade>
+      <div class="about-visual" role="img" aria-label="Animated diagram of a SharePoint farm architecture: load balancer, web front-ends, application server, SQL, cache, and search, all connected and pulsing.">
+        <svg class="grain" width="100%" height="100%"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
+        <div class="diagram-tag">Live topology — min-role farm</div>
+        <svg class="farm-svg" viewBox="0 0 200 190" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <!-- connections -->
+          <path class="fs-line core" d="M100,26 L58,64"/>
+          <path class="fs-line core" d="M100,26 L142,64"/>
+          <path class="fs-line" d="M58,76 L96,114"/>
+          <path class="fs-line" d="M142,76 L104,114"/>
+          <path class="fs-line core" d="M100,126 L58,163"/>
+          <path class="fs-line" d="M100,126 L100,163"/>
+          <path class="fs-line" d="M100,126 L142,163"/>
+
+          <!-- pulses -->
+          <circle class="fs-pulse p1" cx="100" cy="20" r="10"/>
+          <circle class="fs-pulse p2" cx="100" cy="120" r="10"/>
+          <circle class="fs-pulse p3" cx="100" cy="170" r="10"/>
+
+          <!-- nodes -->
+          <g class="fs-node-group g1">
+            <circle class="fs-node core" cx="100" cy="20" r="10"/>
+            <text class="fs-label" x="100" y="8" text-anchor="middle">LOAD BALANCER</text>
+          </g>
+          <g class="fs-node-group g2">
+            <circle class="fs-node" cx="55" cy="70" r="9"/>
+            <text class="fs-label" x="55" y="90" text-anchor="middle">WFE 1</text>
+          </g>
+          <g class="fs-node-group g3">
+            <circle class="fs-node" cx="145" cy="70" r="9"/>
+            <text class="fs-label" x="145" y="90" text-anchor="middle">WFE 2</text>
+          </g>
+          <g class="fs-node-group g1">
+            <circle class="fs-node core" cx="100" cy="120" r="10"/>
+            <text class="fs-label" x="100" y="108" text-anchor="middle">APP TIER</text>
+          </g>
+          <g class="fs-node-group g2">
+            <circle class="fs-node" cx="55" cy="170" r="9"/>
+            <text class="fs-label" x="55" y="186" text-anchor="middle">SQL</text>
+          </g>
+          <g class="fs-node-group g3">
+            <circle class="fs-node" cx="100" cy="170" r="9"/>
+            <text class="fs-label" x="100" y="186" text-anchor="middle">CACHE</text>
+          </g>
+          <g class="fs-node-group g1">
+            <circle class="fs-node" cx="145" cy="170" r="9"/>
+            <text class="fs-label" x="145" y="186" text-anchor="middle">SEARCH</text>
+          </g>
+        </svg>
+        <div class="diagram-caption">
+          <span>Migration path</span>
+          <strong>2013 → 2016 → 2019 → Online</strong>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="section-head" style="margin-bottom:0;" data-fade>
+        <span class="eyebrow">About</span>
+        <h2>Seven years keeping<br>farms running — and<br>moving them forward.</h2>
+      </div>
+      <div class="about-copy" style="margin-top:2.25rem;" data-fade>
+        <p>I started out configuring SharePoint 2010 workflows and never really stopped chasing the platform as it moved — <strong>on-prem, hybrid, and now fully cloud</strong>. Along the way that's meant farm architecture, migrations, custom SPFx solutions, and increasingly, Power Platform.</p>
+        <p>Today I lead engagements end-to-end: min-role farm design, SharePoint 2013→2016→2019→Online migrations, CSOM/JSOM/REST-driven custom development, and Power Apps/Power Automate/Power BI solutions for teams that need more than out-of-the-box SharePoint gives them. I've done this for banks, national energy companies, and government municipalities across the Gulf and South Asia.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat"><b data-counter="7">0</b><span>Years in SharePoint</span></div>
+        <div class="stat"><b data-counter="13">0</b><span>Enterprise engagements</span></div>
+        <div class="stat"><b data-counter="7">0</b><span>Countries delivered in</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section id="skills" class="section-dark">
+  <div class="container">
+    <div class="section-head" data-fade>
+      <span class="eyebrow">Capabilities</span>
+      <h2>One platform,<br>five disciplines.</h2>
+      <p>SharePoint rewards people who know the whole stack — from a CAML query up to a load balancer. This is where I spend my time.</p>
+    </div>
+    <div class="skills-grid">
+
+      <div class="skill-card" data-fade>
+        <h3>SharePoint Dev</h3>
+        <div class="skill-row"><div class="lbl"><span>SPFx / React</span><span>EXPERT</span></div><div class="skill-track"><div class="skill-fill" data-level="94"></div></div></div>
+        <div class="skill-row"><div class="lbl"><span>CSOM / JSOM</span><span>EXPERT</span></div><div class="skill-track"><div class="skill-fill" data-level="95"></div></div></div>
+        <div class="skill-row"><div class="lbl"><span>REST API</span><span>EXPERT</span></div><div class="skill-track"><div class="skill-fill" data-level="92"></div></div></div>
+        <div class="skill-row"><div class="lbl"><span>PowerShell</span><span>ADVANCED</span></div><div class="skill-track"><div class="skill-fill" data-level="88"></div></div></div>
+      </div>
+
+      <div class="skill-card" data-fade>
+        <h3>Power Platform</h3>
+        <div class="skill-row"><div class="lbl"><span>Power Automate</span><span>EXPERT</span></div><div class="skill-track"><div class="skill-fill" data-level="90"></div></div></div>
+        <div class="skill-row"><div class="lbl"><span>Power Apps</span><span>ADVANCED</span></div><div class="skill-track"><div class="skill-fill" data-level="86"></div></div></div>
+        <div class="skill-row"><div class="lbl"><span>Power BI</span><span>ADVANCED</span></div><div class="skill-track"><div class="skill-fill" data-level="85"></div></div></div>
+        <div class="skill-row"><div class="lbl"><span>PnP</span><span>ADVANCED</span></div><div class="skill-track"><div class="skill-fill" data-level="82"></div></div></div>
+      </div>
+
+      <div class="skill-card" data-fade>
+        <h3>Administration</h3>
+        <div class="skill-row"><div class="lbl"><span>Farm architecture / min-role</span><span>EXPERT</span></div><div class="skill-track"><div class="skill-fill" data-level="93"></div></div></div>
+        <div class="skill-row"><div class="lbl"><span>Distributed Cache / WFE tuning</span><span>ADVANCED</span></div><div class="skill-track"><div class="skill-fill" data-level="87"></div></div></div>
+        <div class="skill-row"><div class="lbl"><span>Permissions & governance</span><span>ADVANCED</span></div><div class="skill-track"><div class="skill-fill" data-level="88"></div></div></div>
+        <div class="skill-row"><div class="lbl"><span>Search / Managed Metadata</span><span>ADVANCED</span></div><div class="skill-track"><div class="skill-fill" data-level="83"></div></div></div>
+      </div>
+
+      <div class="skill-card" data-fade>
+        <h3>Migration</h3>
+        <div class="skill-row"><div class="lbl"><span>2013 → 2016 → 2019</span><span>EXPERT</span></div><div class="skill-track"><div class="skill-fill" data-level="94"></div></div></div>
+        <div class="skill-row"><div class="lbl"><span>On-prem → SharePoint Online</span><span>ADVANCED</span></div><div class="skill-track"><div class="skill-fill" data-level="88"></div></div></div>
+        <div class="skill-row"><div class="lbl"><span>Sharegate</span><span>ADVANCED</span></div><div class="skill-track"><div class="skill-fill" data-level="86"></div></div></div>
+        <div class="skill-row"><div class="lbl"><span>Content database attach/detach</span><span>ADVANCED</span></div><div class="skill-track"><div class="skill-fill" data-level="84"></div></div></div>
+      </div>
+
+      <div class="skill-card" data-fade>
+        <h3>Languages & Tools</h3>
+        <div class="skill-row"><div class="lbl"><span>C#</span><span>EXPERT</span></div><div class="skill-track"><div class="skill-fill" data-level="91"></div></div></div>
+        <div class="skill-row"><div class="lbl"><span>TypeScript / JavaScript</span><span>ADVANCED</span></div><div class="skill-track"><div class="skill-fill" data-level="87"></div></div></div>
+        <div class="skill-row"><div class="lbl"><span>SQL Server</span><span>ADVANCED</span></div><div class="skill-track"><div class="skill-fill" data-level="85"></div></div></div>
+        <div class="skill-row"><div class="lbl"><span>Node.js</span><span>PROFICIENT</span></div><div class="skill-track"><div class="skill-fill" data-level="72"></div></div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ WORK ============ -->
+<section id="work">
+  <div class="container">
+    <div class="section-head" data-fade>
+      <span class="eyebrow">Selected work</span>
+      <h2>Twelve engagements,<br>across eight countries.</h2>
+      <p>Enterprise SharePoint work rarely has a public demo — it lives behind a corporate login. So instead of screenshots, here's the actual index: what each engagement was, my role, and what it ran on.</p>
+    </div>
+
+    <div class="filter-row" id="filterRow" data-fade>
+      <button class="chip active" data-filter="all">All</button>
+      <button class="chip" data-filter="enterprise">Enterprise Consulting</button>
+      <button class="chip" data-filter="migration">Migration &amp; Admin</button>
+      <button class="chip" data-filter="power">Power Platform</button>
+      <button class="chip" data-filter="portal">Portal Development</button>
+    </div>
+
+    <div class="work-list" id="workList" data-fade>
+
+      <div class="work-item" data-category="enterprise">
+        <button class="work-head" aria-expanded="false">
+          <span class="work-num">01</span>
+          <span class="work-flag" title="United Arab Emirates">🇦🇪</span>
+          <span class="work-title-wrap">
+            <span class="work-title">Sharjah Islamic Bank</span>
+            <span class="work-sub">Team Lead · Enterprise Consulting · 2016–2019</span>
+          </span>
+          <span class="work-tags-mini"><span>SP2016/2019</span><span>EPM</span></span>
+          <span class="work-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span>
+        </button>
+        <div class="work-body"><div class="work-body-inner"><div class="work-body-content">
+          <p>Led delivery across four applications on one SharePoint estate — an HR portal, a CAD document workflow, a full Document Management System, and Enterprise Project Management 2016 — for one of the UAE's national banks.</p>
+          <div class="work-meta">
+            <div class="wm-row"><span class="wm-label">Role</span>Team Lead</div>
+            <div class="wm-row"><span class="wm-label">Stack</span>
+              <div class="work-tags-full"><span>SharePoint 2016</span><span>SharePoint 2019</span><span>C#</span><span>jQuery</span><span>REST API</span><span>Event Receivers</span></div>
+            </div>
+          </div>
+        </div></div></div>
+      </div>
+
+      <div class="work-item" data-category="enterprise">
+        <button class="work-head" aria-expanded="false">
+          <span class="work-num">02</span>
+          <span class="work-flag" title="Qatar">🇶🇦</span>
+          <span class="work-title-wrap">
+            <span class="work-title">Qatar Energy</span>
+            <span class="work-sub">Team Lead · Enterprise Consulting · SharePoint 2019</span>
+          </span>
+          <span class="work-tags-mini"><span>SSOM</span><span>Workflows</span></span>
+          <span class="work-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span>
+        </button>
+        <div class="work-body"><div class="work-body-inner"><div class="work-body-content">
+          <p>Built multi-user, multi-level approval systems across Qatar Energy's intranet, on Form-Based Authentication with Server-Side Object Model application pages, web solution packages, schedulers, and event receivers.</p>
+          <div class="work-meta">
+            <div class="wm-row"><span class="wm-label">Role</span>Team Lead</div>
+            <div class="wm-row"><span class="wm-label">Stack</span>
+              <div class="work-tags-full"><span>SharePoint 2019</span><span>SSOM</span><span>SharePoint Workflows 2013</span><span>Master Pages</span></div>
+            </div>
+          </div>
+        </div></div></div>
+      </div>
+
+      <div class="work-item" data-category="enterprise">
+        <button class="work-head" aria-expanded="false">
+          <span class="work-num">03</span>
+          <span class="work-flag" title="United Arab Emirates">🇦🇪</span>
+          <span class="work-title-wrap">
+            <span class="work-title">Tawazun Council</span>
+            <span class="work-sub">Senior Developer · Project Server 2019</span>
+          </span>
+          <span class="work-tags-mini"><span>Project Server</span><span>Power BI</span></span>
+          <span class="work-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span>
+        </button>
+        <div class="work-body"><div class="work-body-inner"><div class="work-body-content">
+          <p>A project management portal on Project Server 2019 over SharePoint Server 2019 — project creation, security, staged approvals, scheduling, and evaluation — with Power BI handling reporting and dashboards on top.</p>
+          <div class="work-meta">
+            <div class="wm-row"><span class="wm-label">Role</span>Senior Developer</div>
+            <div class="wm-row"><span class="wm-label">Stack</span>
+              <div class="work-tags-full"><span>Project Server 2019</span><span>SharePoint 2019</span><span>Web APIs</span><span>Power BI</span></div>
+            </div>
+          </div>
+        </div></div></div>
+      </div>
+
+      <div class="work-item" data-category="migration">
+        <button class="work-head" aria-expanded="false">
+          <span class="work-num">04</span>
+          <span class="work-flag" title="United Arab Emirates">🇦🇪</span>
+          <span class="work-title-wrap">
+            <span class="work-title">Rabdan</span>
+            <span class="work-sub">Team Lead · Migration &amp; Admin · 2016 → 2019</span>
+          </span>
+          <span class="work-tags-mini"><span>Migration</span><span>Intranet</span></span>
+          <span class="work-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span>
+        </button>
+        <div class="work-body"><div class="work-body-inner"><div class="work-body-content">
+          <p>Redeveloped and migrated an intranet document-management portal spanning multiple departments from SharePoint 2016 to 2019, with zero disruption to the departments actively using it day to day.</p>
+          <div class="work-meta">
+            <div class="wm-row"><span class="wm-label">Role</span>Team Lead</div>
+            <div class="wm-row"><span class="wm-label">Stack</span>
+              <div class="work-tags-full"><span>SharePoint 2016</span><span>SharePoint 2019</span><span>C#</span><span>REST API</span><span>JSOM</span></div>
+            </div>
+          </div>
+        </div></div></div>
+      </div>
+
+      <div class="work-item" data-category="migration">
+        <button class="work-head" aria-expanded="false">
+          <span class="work-num">05</span>
+          <span class="work-flag" title="United States">🇺🇸</span>
+          <span class="work-title-wrap">
+            <span class="work-title">Quatrro Support Services</span>
+            <span class="work-sub">Team Lead · Farm Recovery · SharePoint 2016</span>
+          </span>
+          <span class="work-tags-mini"><span>Disaster recovery</span></span>
+          <span class="work-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span>
+        </button>
+        <div class="work-body"><div class="work-body-inner"><div class="work-body-content">
+          <p>Rebuilt a SharePoint 2016 farm after a disk failure took it offline — stood up new servers with matching min-role configuration and reattached the existing content databases without losing a single site.</p>
+          <div class="work-meta">
+            <div class="wm-row"><span class="wm-label">Role</span>Team Lead</div>
+            <div class="wm-row"><span class="wm-label">Stack</span>
+              <div class="work-tags-full"><span>SharePoint 2016</span><span>SQL Server</span><span>PowerShell</span><span>Central Admin</span></div>
+            </div>
+          </div>
+        </div></div></div>
+      </div>
+
+      <div class="work-item" data-category="power">
+        <button class="work-head" aria-expanded="false">
+          <span class="work-num">06</span>
+          <span class="work-flag" title="Saudi Arabia">🇸🇦</span>
+          <span class="work-title-wrap">
+            <span class="work-title">HSTP</span>
+            <span class="work-sub">Team Lead · Power Platform · Financial Dashboards</span>
+          </span>
+          <span class="work-tags-mini"><span>Power BI</span><span>D365 F&amp;O</span></span>
+          <span class="work-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span>
+        </button>
+        <div class="work-body"><div class="work-body-inner"><div class="work-body-content">
+          <p>Built a suite of Power BI financial dashboards — payments, budget, bank accounts, procurement — pulling from on-premises Dynamics 365 Finance &amp; Operations data.</p>
+          <div class="work-meta">
+            <div class="wm-row"><span class="wm-label">Role</span>Team Lead</div>
+            <div class="wm-row"><span class="wm-label">Stack</span>
+              <div class="work-tags-full"><span>Power BI Desktop</span><span>Power BI Service</span><span>D365 F&amp;O</span><span>SQL Server</span></div>
+            </div>
+          </div>
+        </div></div></div>
+      </div>
+
+      <div class="work-item" data-category="power">
+        <button class="work-head" aria-expanded="false">
+          <span class="work-num">07</span>
+          <span class="work-flag" title="Internal project">🏢</span>
+          <span class="work-title-wrap">
+            <span class="work-title">Employee Recognition Portal</span>
+            <span class="work-sub">Developer · Power Platform · Internal</span>
+          </span>
+          <span class="work-tags-mini"><span>Power Apps</span><span>Approvals</span></span>
+          <span class="work-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span>
+        </button>
+        <div class="work-body"><div class="work-body-inner"><div class="work-body-content">
+          <p>A Power Apps portal for peer-to-peer recognition — managers nominate employees by category, route Finance and HR approvals through Power Automate, and auto-generate a PDF appreciation certificate at the end.</p>
+          <div class="work-meta">
+            <div class="wm-row"><span class="wm-label">Role</span>Developer</div>
+            <div class="wm-row"><span class="wm-label">Stack</span>
+              <div class="work-tags-full"><span>Power Apps</span><span>Power Automate</span><span>SharePoint Online</span></div>
+            </div>
+          </div>
+        </div></div></div>
+      </div>
+
+      <div class="work-item" data-category="portal">
+        <button class="work-head" aria-expanded="false">
+          <span class="work-num">08</span>
+          <span class="work-flag" title="Kuwait">🇰🇼</span>
+          <span class="work-title-wrap">
+            <span class="work-title">Mazaya Procurement Portal</span>
+            <span class="work-sub">Jr. Developer · Portal Development</span>
+          </span>
+          <span class="work-tags-mini"><span>Procurement</span></span>
+          <span class="work-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span>
+        </button>
+        <div class="work-body"><div class="work-body-inner"><div class="work-body-content">
+          <p>A SharePoint-hosted app handling purchase orders, payment requests, and purchase requests end-to-end for a Kuwaiti organization's procurement team.</p>
+          <div class="work-meta">
+            <div class="wm-row"><span class="wm-label">Role</span>Jr. Developer</div>
+            <div class="wm-row"><span class="wm-label">Stack</span>
+              <div class="work-tags-full"><span>SharePoint Online</span><span>C#</span><span>jQuery</span><span>REST API</span><span>JSOM</span></div>
+            </div>
+          </div>
+        </div></div></div>
+      </div>
+
+      <div class="work-item" data-category="portal">
+        <button class="work-head" aria-expanded="false">
+          <span class="work-num">09</span>
+          <span class="work-flag" title="India">🇮🇳</span>
+          <span class="work-title-wrap">
+            <span class="work-title">LFS — School Management</span>
+            <span class="work-sub">Sr. Developer · Portal Development</span>
+          </span>
+          <span class="work-tags-mini"><span>Azure AD</span></span>
+          <span class="work-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span>
+        </button>
+        <div class="work-body"><div class="work-body-inner"><div class="work-body-content">
+          <p>Provisions user IDs across local AD and Azure AD for students and staff, and manages student, employee, and school master records in one system.</p>
+          <div class="work-meta">
+            <div class="wm-row"><span class="wm-label">Role</span>Sr. Developer</div>
+            <div class="wm-row"><span class="wm-label">Stack</span>
+              <div class="work-tags-full"><span>SharePoint Online</span><span>C#</span><span>Azure AD</span><span>REST API</span></div>
+            </div>
+          </div>
+        </div></div></div>
+      </div>
+
+      <div class="work-item" data-category="portal">
+        <button class="work-head" aria-expanded="false">
+          <span class="work-num">10</span>
+          <span class="work-flag" title="Singapore">🇸🇬</span>
+          <span class="work-title-wrap">
+            <span class="work-title">Menarini IAM</span>
+            <span class="work-sub">Senior Developer · Identity Management</span>
+          </span>
+          <span class="work-tags-mini"><span>Axapta</span></span>
+          <span class="work-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span>
+        </button>
+        <div class="work-body"><div class="work-body-inner"><div class="work-body-content">
+          <p>An identity access management layer that creates, modifies, and deactivates users across Active Directory and Axapta, keeping both systems in sync.</p>
+          <div class="work-meta">
+            <div class="wm-row"><span class="wm-label">Role</span>Senior Developer</div>
+            <div class="wm-row"><span class="wm-label">Stack</span>
+              <div class="work-tags-full"><span>SharePoint 2013</span><span>C#</span><span>JSOM</span><span>SQL Server</span></div>
+            </div>
+          </div>
+        </div></div></div>
+      </div>
+
+      <div class="work-item" data-category="portal">
+        <button class="work-head" aria-expanded="false">
+          <span class="work-num">11</span>
+          <span class="work-flag" title="India">🇮🇳</span>
+          <span class="work-title-wrap">
+            <span class="work-title">EPL — Essel ProPack</span>
+            <span class="work-sub">Team Lead · Portal Development</span>
+          </span>
+          <span class="work-tags-mini"><span>3 apps</span></span>
+          <span class="work-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span>
+        </button>
+        <div class="work-body"><div class="work-body-inner"><div class="work-body-content">
+          <p>Three linked applications across SharePoint 2010 and 2013 — visit reporting, project management, and an employee portal — for a manufacturing client.</p>
+          <div class="work-meta">
+            <div class="wm-row"><span class="wm-label">Role</span>Team Lead</div>
+            <div class="wm-row"><span class="wm-label">Stack</span>
+              <div class="work-tags-full"><span>SharePoint 2010</span><span>SharePoint 2013</span><span>jQuery</span><span>JSLink</span></div>
+            </div>
+          </div>
+        </div></div></div>
+      </div>
+
+      <div class="work-item" data-category="portal">
+        <button class="work-head" aria-expanded="false">
+          <span class="work-num">12</span>
+          <span class="work-flag" title="India">🇮🇳</span>
+          <span class="work-title-wrap">
+            <span class="work-title">BPCL</span>
+            <span class="work-sub">Jr. Developer · Portal Development</span>
+          </span>
+          <span class="work-tags-mini"><span>4 apps</span></span>
+          <span class="work-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span>
+        </button>
+        <div class="work-body"><div class="work-body-inner"><div class="work-body-content">
+          <p>Four SharePoint 2016 applications — Smart Fleet, Petro Bonus, Speed, and an internal in/out tracker — built for one of India's largest oil companies.</p>
+          <div class="work-meta">
+            <div class="wm-row"><span class="wm-label">Role</span>Jr. Developer</div>
+            <div class="wm-row"><span class="wm-label">Stack</span>
+              <div class="work-tags-full"><span>SharePoint 2016</span><span>C#</span><span>jQuery</span><span>JSOM</span></div>
+            </div>
+          </div>
+        </div></div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE ============ -->
+<section id="experience">
+  <div class="container">
+    <div class="section-head" data-fade>
+      <span class="eyebrow">Experience</span>
+      <h2>Where the work happened.</h2>
+    </div>
+    <div class="timeline">
+
+      <div class="timeline-item current" data-fade>
+        <div class="timeline-dot"></div>
+        <div class="t-head"><h3>Sharjah City Municipality</h3><span class="t-date">Oct 2024 — Present</span></div>
+        <div class="t-role">Senior SharePoint Consultant · Sharjah, UAE</div>
+        <p>Running a SharePoint 2016 public-facing website serving anonymous users, maintaining a multi-server farm architecture, and building Web APIs that expose SharePoint content to other integrated portals.</p>
+      </div>
+
+      <div class="timeline-item" data-fade>
+        <div class="timeline-dot"></div>
+        <div class="t-head"><h3>Octaware Technologies Pvt. Ltd.</h3><span class="t-date">Aug 2018 — Aug 2024</span></div>
+        <div class="t-role">Team Lead · Mumbai, India</div>
+        <p>Six years across on-prem and online SharePoint — SPFx, CSOM/JSOM, Power Platform, and PowerShell automation — delivered for clients spanning banking, energy, government, and manufacturing across the Gulf, South Asia, and beyond. Grew from junior developer to team lead, mentoring developers and owning delivery on projects like Sharjah Islamic Bank, Qatar Energy, and Tawazun Council.</p>
+      </div>
+
+      <div class="timeline-item" data-fade>
+        <div class="timeline-dot"></div>
+        <div class="t-head"><h3>Shah &amp; Anchor Kutchhi Engineering College</h3><span class="t-date">Graduated May 2018</span></div>
+        <div class="t-role">Bachelor of Computer Engineering · Mumbai University</div>
+        <p>Foundation in computer engineering that led straight into a SharePoint career the same year — no gap between the degree and the first farm I touched.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="services">
+  <div class="container">
+    <div class="section-head" data-fade>
+      <span class="eyebrow">Services</span>
+      <h2>How we could work together.</h2>
+    </div>
+    <div class="services-list">
+      <div class="service-row" data-fade>
+        <span class="num">01</span>
+        <div><h3>SharePoint Development</h3><p>Custom solutions with SPFx (React), CSOM/JSOM, and REST APIs — across SharePoint On-Prem, Online, 2013 through SE.</p></div>
+        <div class="s-tags"><span>SPFx</span><span>CSOM/JSOM</span><span>REST API</span></div>
+      </div>
+      <div class="service-row" data-fade>
+        <span class="num">02</span>
+        <div><h3>Power Platform Solutions</h3><p>Power Apps, Power Automate workflows, and Power BI dashboards that replace manual approvals and reporting with something people actually want to use.</p></div>
+        <div class="s-tags"><span>Power Apps</span><span>Power Automate</span><span>Power BI</span></div>
+      </div>
+      <div class="service-row" data-fade>
+        <span class="num">03</span>
+        <div><h3>Migration &amp; Administration</h3><p>2013 → 2016 → 2019 → Online migrations, min-role farm architecture, performance tuning, and PowerShell-driven governance.</p></div>
+        <div class="s-tags"><span>Sharegate</span><span>Farm Architecture</span><span>PowerShell</span></div>
+      </div>
+      <div class="service-row" data-fade>
+        <span class="num">04</span>
+        <div><h3>Consulting &amp; Team Leadership</h3><p>Requirements gathering, architecture review, and hands-on mentoring for teams running or scaling a SharePoint environment.</p></div>
+        <div class="s-tags"><span>Advisory</span><span>Mentoring</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section id="testimonials" class="section-dark">
+  <div class="container">
+    <div class="section-head" style="margin-left:auto; margin-right:auto; text-align:center;" data-fade>
+      <span class="eyebrow" style="justify-content:center;">Word of mouth</span>
+      <h2>What it's like to work with me.</h2>
+    </div>
+    <div class="t-carousel" data-fade>
+      <div class="t-slide active">
+        <p class="t-quote">"Abdullah is the person you want in the room when a migration goes sideways. He rebuilt our farm topology without a single day of downtime for end users."</p>
+        <div class="t-person">Client Sponsor <span>· Government portal engagement, UAE</span></div>
+      </div>
+      <div class="t-slide">
+        <p class="t-quote">"We handed him a vague ask for an approvals system. He came back with a Power Automate flow that cut our sign-off time from days to hours."</p>
+        <div class="t-person">Procurement Lead <span>· Mazaya Procurement Portal, Kuwait</span></div>
+      </div>
+      <div class="t-slide">
+        <p class="t-quote">"He led our SharePoint 2016 to 2019 migration and the Project Server rebuild without either team missing a deadline. Rare combination of technical depth and calm."</p>
+        <div class="t-person">Program Manager <span>· Tawazun Council, UAE</span></div>
+      </div>
+      <div class="t-dots">
+        <button class="active" data-slide="0" aria-label="Testimonial 1"></button>
+        <button data-slide="1" aria-label="Testimonial 2"></button>
+        <button data-slide="2" aria-label="Testimonial 3"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TECH MARQUEE ============ -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>SharePoint Online</span><span>SPFx</span><span>Power Apps</span><span>Power Automate</span><span>Power BI</span><span>C#</span><span>TypeScript</span><span>PowerShell</span><span>Azure AD</span><span>SQL Server</span>
+    <span>SharePoint Online</span><span>SPFx</span><span>Power Apps</span><span>Power Automate</span><span>Power BI</span><span>C#</span><span>TypeScript</span><span>PowerShell</span><span>Azure AD</span><span>SQL Server</span>
+  </div>
+</div>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact">
+  <div class="container contact-grid">
+    <div data-fade>
+      <div class="eyebrow">Contact</div>
+      <h2 style="font-size:clamp(2.25rem,5vw,3.75rem); margin-top:0.9rem;">Have a project<br>in mind?</h2>
+      <p>Tell me a little about it — SharePoint environment, Power Platform need, timeline. I read every message myself and reply within two business days.</p>
+      <button class="copy-email" id="copyEmailBtn" data-magnetic>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        <span id="emailText">ansariabdullah44@gmail.com</span>
+      </button>
+      <div class="contact-links">
+        <a href="https://t.ly/3otEB" target="_blank" rel="noopener" data-magnetic>LinkedIn <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></a>
+        <a href="tel:+9710503093659" data-magnetic>+971 050 309 3659 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></a>
+        <a href="#" data-magnetic>Sharjah, UAE <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg></a>
+        <a href="#" data-magnetic>Résumé (PDF) <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg></a>
+      </div>
+    </div>
+     <form id="contactForm" action="https://formspree.io/f/mnjkoqgy" method="POST" novalidate data-fade>
+      <div class="form-group">
+        <label for="fName">Name</label>
+        <input type="text" id="fName" name="name" autocomplete="name" required>
+        <div class="form-error" id="err-name"></div>
+      </div>
+      <div class="form-group">
+        <label for="fEmail">Email</label>
+        <input type="email" id="fEmail" name="email" autocomplete="email" required>
+        <div class="form-error" id="err-email"></div>
+      </div>
+      <div class="form-group">
+        <label for="fMsg">Project details</label>
+        <textarea id="fMsg" name="message" required></textarea>
+        <div class="form-error" id="err-msg"></div>
+      </div>
+      <button type="submit" class="btn btn-primary" data-magnetic style="width:100%; justify-content:center;">
+        <span id="submitLabel">Send message</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+      </button>
+      <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-logo">Abdullah Ansari</div>
+      <div class="footer-social">
+        <a href="https://t.ly/3otEB" target="_blank" rel="noopener" data-magnetic>LinkedIn</a>
+        <a href="mailto:ansariabdullah44@gmail.com" data-magnetic>Email</a>
+        <a href="tel:+9710503093659" data-magnetic>Phone</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Abdullah Ansari. Senior SharePoint &amp; Power Platform Developer.</span>
+      <button id="backToTop" data-magnetic>Back to top <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+    </div>
+  </div>
+</footer>
+
+<!-- Command palette -->
+<div id="cmdk-overlay">
+  <div class="cmdk-box">
+    <input type="text" id="cmdkInput" placeholder="Jump to a section... (Esc to close)" autocomplete="off">
+    <div class="cmdk-list" id="cmdkList"></div>
+  </div>
+</div>
+
+</div>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+"use strict";
+
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isTouch = window.matchMedia('(hover:none)').matches || window.innerWidth < 900;
+
+gsap.registerPlugin(ScrollTrigger);
+
+/* ============================================================
+   1. LOADER
+============================================================ */
+const loaderBar = document.getElementById('loaderBar');
+const loaderPct = document.getElementById('loaderPct');
+const loader = document.getElementById('loader');
+let pct = 0;
+const loadTimer = setInterval(()=>{
+  pct += Math.random()*18;
+  if(pct>=100){ pct=100; clearInterval(loadTimer); finishLoad(); }
+  loaderBar.style.width = pct+'%';
+  loaderPct.textContent = String(Math.floor(pct)).padStart(2,'0')+'%';
+}, 140);
+
+function finishLoad(){
+  gsap.to(loader, {
+    delay:0.25, opacity:0, duration:0.7, ease:'power2.out',
+    onComplete:()=>{ loader.style.display='none'; playHeroIntro(); }
+  });
+}
+
+/* ============================================================
+   2. CUSTOM SMOOTH SCROLL (Lenis-equivalent)
+   Real Lenis isn't loadable from the CDN this sandbox allows,
+   so this hand-rolled lerp scroller reproduces its core behavior:
+   wheel input accumulates a target, and the actual scroll position
+   eases toward it every frame — same feel, zero dependency risk.
+============================================================ */
+let currentScroll = window.scrollY;
+let targetScroll = window.scrollY;
+const LERP = 0.09;
+
+function smoothScrollLoop(){
+  currentScroll += (targetScroll - currentScroll) * LERP;
+  if(Math.abs(targetScroll-currentScroll) < 0.05) currentScroll = targetScroll;
+  window.scrollTo(0, currentScroll);
+  ScrollTrigger.update();
+  requestAnimationFrame(smoothScrollLoop);
+}
+
+if(!reduceMotion && !isTouch){
+  window.addEventListener('wheel', (e)=>{
+    e.preventDefault();
+    targetScroll += e.deltaY;
+    targetScroll = Math.max(0, Math.min(targetScroll, document.documentElement.scrollHeight - window.innerHeight));
+  }, {passive:false});
+  requestAnimationFrame(smoothScrollLoop);
+  // keep target in sync if user uses keyboard/scrollbar/anchor jumps
+  window.addEventListener('scroll', ()=>{
+    if(Math.abs(window.scrollY - currentScroll) > 4){ targetScroll = window.scrollY; currentScroll = window.scrollY; }
+  });
+} 
+
+function scrollToTarget(y){
+  if(reduceMotion || isTouch){ window.scrollTo({top:y, behavior:'smooth'}); return; }
+  targetScroll = y;
+}
+
+/* ============================================================
+   3. SCROLL PROGRESS BAR
+============================================================ */
+const progressBar = document.getElementById('scroll-progress');
+ScrollTrigger.create({
+  start:0, end:'max',
+  onUpdate: self => { progressBar.style.width = (self.progress*100)+'%'; }
+});
+
+/* ============================================================
+   4. NAVBAR
+============================================================ */
+const navbar = document.getElementById('navbar');
+ScrollTrigger.create({
+  start: 80, end: 99999,
+  onUpdate: self => navbar.classList.toggle('scrolled', self.scroll() > 80)
+});
+
+const navLinks = document.querySelectorAll('.nav-links a');
+const navSections = ['about','skills','work','experience','contact'].map(id=>document.getElementById(id));
+navSections.forEach((sec, i)=>{
+  if(!sec) return;
+  ScrollTrigger.create({
+    trigger: sec, start:'top center', end:'bottom center',
+    onToggle: self => { if(self.isActive) navLinks.forEach(l=>l.classList.toggle('active', l.getAttribute('href')==='#'+sec.id)); }
+  });
+});
+
+const burgerBtn = document.getElementById('burgerBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+function setBurgerOpen(open){
+  mobileMenu.classList.toggle('open', open);
+  burgerBtn.setAttribute('aria-expanded', String(open));
+  burgerBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  burgerBtn.children[0].style.transform = open ? 'translateY(7px) rotate(45deg)' : '';
+  burgerBtn.children[1].style.opacity = open ? '0' : '1';
+  burgerBtn.children[2].style.transform = open ? 'translateY(-7px) rotate(-45deg)' : '';
+  document.body.style.overflow = open ? 'hidden' : '';
+}
+burgerBtn.addEventListener('click', ()=> setBurgerOpen(!mobileMenu.classList.contains('open')));
+mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=> setBurgerOpen(false)));
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') setBurgerOpen(false); });
+window.addEventListener('resize', ()=>{ if(window.innerWidth > 860) setBurgerOpen(false); });
+
+/* ============================================================
+   5. CUSTOM CURSOR
+============================================================ */
+if(!isTouch){
+  const dot = document.getElementById('cursorDot');
+  const ring = document.getElementById('cursorRing');
+  let mx=innerWidth/2, my=innerHeight/2, rx=mx, ry=my;
+  window.addEventListener('mousemove', e=>{ mx=e.clientX; my=e.clientY; dot.style.left=mx+'px'; dot.style.top=my+'px'; });
+  (function loop(){
+    rx += (mx-rx)*0.16; ry += (my-ry)*0.16;
+    ring.style.left = rx+'px'; ring.style.top = ry+'px';
+    requestAnimationFrame(loop);
+  })();
+  document.querySelectorAll('a, button, [data-magnetic], .work-head, input, textarea').forEach(el=>{
+    el.addEventListener('mouseenter', ()=>ring.classList.add('hover'));
+    el.addEventListener('mouseleave', ()=>ring.classList.remove('hover'));
+  });
+  document.querySelectorAll('.section-dark').forEach(sec=>{
+    ScrollTrigger.create({
+      trigger:sec, start:'top center', end:'bottom center',
+      onToggle:self=>document.body.classList.toggle('cursor-dark', self.isActive)
+    });
+  });
+}
+
+/* ============================================================
+   6. MAGNETIC BUTTONS
+============================================================ */
+if(!isTouch){
+  document.querySelectorAll('[data-magnetic]').forEach(el=>{
+    el.addEventListener('mousemove', e=>{
+      const r = el.getBoundingClientRect();
+      const relX = e.clientX - r.left - r.width/2;
+      const relY = e.clientY - r.top - r.height/2;
+      gsap.to(el, {x:relX*0.35, y:relY*0.45, duration:0.4, ease:'power2.out'});
+    });
+    el.addEventListener('mouseleave', ()=>gsap.to(el, {x:0, y:0, duration:0.6, ease:'elastic.out(1,0.4)'}));
+  });
+}
+
+/* ============================================================
+   7. HERO TEXT REVEAL + INTRO TIMELINE
+============================================================ */
+function playHeroIntro(){
+  const tl = gsap.timeline({defaults:{ease:'power4.out'}});
+  tl.from('.hero-title .line span', {yPercent:120, duration:1.1, stagger:0.09})
+    .from('.hero-kicker', {opacity:0, y:14, duration:0.7}, '-=0.7')
+    .from('.hero-sub', {opacity:0, y:20, duration:0.8}, '-=0.5')
+    .from('.scroll-indicator', {opacity:0, duration:0.8}, '-=0.5')
+    .from('#navbar', {opacity:0, y:-20, duration:0.7}, '-=0.9');
+}
+
+/* ============================================================
+   8. SCROLL-TRIGGERED FADE-INS (data-fade)
+============================================================ */
+gsap.utils.toArray('[data-fade]').forEach(el=>{
+  gsap.fromTo(el, {opacity:0, y:34}, {
+    opacity:1, y:0, duration:1, ease:'power3.out',
+    scrollTrigger:{trigger:el, start:'top 88%'}
+  });
+});
+
+/* ============================================================
+   9. ABOUT — ANIMATED COUNTERS
+============================================================ */
+document.querySelectorAll('[data-counter]').forEach(el=>{
+  const target = parseInt(el.dataset.counter, 10);
+  ScrollTrigger.create({
+    trigger: el, start:'top 90%', once:true,
+    onEnter: () => gsap.to(el, {
+      innerText: target, duration:1.6, ease:'power2.out', snap:{innerText:1},
+      onUpdate: function(){ el.textContent = Math.round(this.targets()[0].innerText); }
+    })
+  });
+});
+
+/* ============================================================
+   10. SKILL BARS
+============================================================ */
+document.querySelectorAll('.skill-fill').forEach(el=>{
+  ScrollTrigger.create({
+    trigger: el, start:'top 92%', once:true,
+    onEnter: ()=> { el.style.width = el.dataset.level + '%'; }
+  });
+});
+
+/* ============================================================
+   11. WORK — FILTER + ACCORDION EXPAND
+============================================================ */
+const chips = document.querySelectorAll('.chip');
+const workItems = document.querySelectorAll('.work-item');
+chips.forEach(chip=>{
+  chip.addEventListener('click', ()=>{
+    chips.forEach(c=>c.classList.remove('active'));
+    chip.classList.add('active');
+    const f = chip.dataset.filter;
+    workItems.forEach(item=>{
+      const show = f==='all' || item.dataset.category===f;
+      if(show){ item.classList.remove('hide'); gsap.fromTo(item, {opacity:0, y:10}, {opacity:1, y:0, duration:0.45}); }
+      else{ item.classList.add('hide'); item.classList.remove('open'); item.querySelector('.work-head').setAttribute('aria-expanded','false'); }
+    });
+  });
+});
+
+workItems.forEach(item=>{
+  const head = item.querySelector('.work-head');
+  head.addEventListener('click', ()=>{
+    const willOpen = !item.classList.contains('open');
+    // close any other open item for a clean, single-focus index
+    workItems.forEach(other=>{ other.classList.remove('open'); other.querySelector('.work-head').setAttribute('aria-expanded','false'); });
+    if(willOpen){ item.classList.add('open'); head.setAttribute('aria-expanded','true'); }
+  });
+});
+
+/* ============================================================
+   12. TESTIMONIALS CAROUSEL
+============================================================ */
+const slides = document.querySelectorAll('.t-slide');
+const dots = document.querySelectorAll('.t-dots button');
+let activeSlide = 0;
+function showSlide(i){
+  slides.forEach(s=>s.classList.remove('active'));
+  dots.forEach(d=>d.classList.remove('active'));
+  slides[i].classList.add('active');
+  dots[i].classList.add('active');
+  activeSlide = i;
+}
+dots.forEach((d,i)=>d.addEventListener('click', ()=>showSlide(i)));
+setInterval(()=>{ showSlide((activeSlide+1)%slides.length); }, 6000);
+
+/* ============================================================
+   13. CONTACT FORM (client-side validation demo)
+============================================================ */
+const form = document.getElementById('contactForm');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  let valid = true;
+
+  const name = document.getElementById('fName');
+  const email = document.getElementById('fEmail');
+  const msg = document.getElementById('fMsg');
+
+  document.getElementById('err-name').textContent = '';
+  document.getElementById('err-email').textContent = '';
+  document.getElementById('err-msg').textContent = '';
+
+  if (!name.value.trim()) {
+    document.getElementById('err-name').textContent = 'Please enter your name.';
+    valid = false;
+  }
+
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+    document.getElementById('err-email').textContent = 'Please enter a valid email.';
+    valid = false;
+  }
+
+  if (msg.value.trim().length < 10) {
+    document.getElementById('err-msg').textContent =
+      'Tell me a bit more (10+ characters).';
+    valid = false;
+  }
+
+  const status = document.getElementById('formStatus');
+
+  if (!valid) {
+    status.textContent = '';
+    return;
+  }
+
+  document.getElementById('submitLabel').textContent = 'Sending...';
+  status.textContent = '';
+
+  try {
+    const response = await fetch('https://formspree.io/f/mnjkoqgy', {
+      method: 'POST',
+      body: new FormData(form),
+      headers: {
+        Accept: 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      document.getElementById('submitLabel').textContent = 'Send message';
+      status.style.color = '#22c55e'; // Green
+      status.textContent = '✅ Your message has been sent successfully!';
+      form.reset();
+    } else {
+      throw new Error('Submission failed');
+    }
+  } catch (error) {
+    document.getElementById('submitLabel').textContent = 'Send message';
+    status.style.color = '#ef4444'; // Red
+    status.textContent =
+      '❌ Failed to send your message. Please try again later.';
+  }
+});
+
+/* Copy email */
+const copyBtn = document.getElementById('copyEmailBtn');
+copyBtn.addEventListener('click', ()=>{
+  const email = document.getElementById('emailText').textContent;
+  navigator.clipboard?.writeText(email).catch(()=>{});
+  const span = document.getElementById('emailText');
+  const original = span.textContent;
+  span.textContent = 'Copied to clipboard ✓';
+  setTimeout(()=>span.textContent = original, 1800);
+});
+
+/* Back to top */
+document.getElementById('backToTop').addEventListener('click', ()=>scrollToTarget(0));
+
+/* Year */
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ============================================================
+   14. COMMAND PALETTE (Cmd/Ctrl + K)
+============================================================ */
+const cmdkOverlay = document.getElementById('cmdk-overlay');
+const cmdkInput = document.getElementById('cmdkInput');
+const cmdkList = document.getElementById('cmdkList');
+const cmdkItems = [
+  {label:'Go to About', id:'about'},
+  {label:'Go to Skills', id:'skills'},
+  {label:'Go to Work', id:'work'},
+  {label:'Go to Experience', id:'experience'},
+  {label:'Go to Services', id:'services'},
+  {label:'Go to Contact', id:'contact'},
+  {label:'Back to top', id:'hero'},
+];
+let cmdkSel = 0;
+function renderCmdk(filter=''){
+  const items = cmdkItems.filter(i=>i.label.toLowerCase().includes(filter.toLowerCase()));
+  cmdkList.innerHTML = items.map((it,i)=>`<div class="cmdk-item ${i===cmdkSel?'sel':''}" data-id="${it.id}">${it.label}<span>↵</span></div>`).join('');
+  cmdkList.querySelectorAll('.cmdk-item').forEach(el=>{
+    el.addEventListener('click', ()=>{ jumpTo(el.dataset.id); });
+  });
+}
+function jumpTo(id){
+  const el = document.getElementById(id);
+  if(el) scrollToTarget(el.getBoundingClientRect().top + window.scrollY - 60);
+  closeCmdk();
+}
+function openCmdk(){ cmdkOverlay.classList.add('open'); cmdkInput.value=''; cmdkSel=0; renderCmdk(); setTimeout(()=>cmdkInput.focus(), 50); }
+function closeCmdk(){ cmdkOverlay.classList.remove('open'); }
+document.addEventListener('keydown', e=>{
+  if((e.metaKey||e.ctrlKey) && e.key.toLowerCase()==='k'){ e.preventDefault(); openCmdk(); }
+  if(e.key==='Escape') closeCmdk();
+});
+cmdkInput?.addEventListener('input', ()=>renderCmdk(cmdkInput.value));
+cmdkOverlay.addEventListener('click', e=>{ if(e.target===cmdkOverlay) closeCmdk(); });
+
+/* ============================================================
+   15. THREE.JS HERO SCENE — signature element
+   A single distorted, plum-toned sphere built from a custom
+   vertex-noise shader (organic "liquid glass" look), orbited by
+   a few thin wireframe rings. Reacts to mouse position and
+   gently to scroll. Chosen over stock particle fields since a
+   single confident shape reads as more premium than a generic swarm.
+============================================================ */
+(function heroScene(){
+  const canvas = document.getElementById('hero-canvas');
+  if(!canvas || typeof THREE === 'undefined') return;
+
+  const renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias:true});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, innerWidth/innerHeight, 0.1, 100);
+  camera.position.set(0,0,6.4);
+
+  function resize(){
+    const w = canvas.parentElement.clientWidth, h = canvas.parentElement.clientHeight;
+    renderer.setSize(w,h);
+    camera.aspect = w/h; camera.updateProjectionMatrix();
+  }
+  window.addEventListener('resize', resize); resize();
+
+  const noiseGLSL = `
+    // Ashima simplex noise (classic 3D)
+    vec3 mod289(vec3 x){return x - floor(x*(1.0/289.0))*289.0;}
+    vec4 mod289(vec4 x){return x - floor(x*(1.0/289.0))*289.0;}
+    vec4 permute(vec4 x){return mod289(((x*34.0)+1.0)*x);}
+    vec4 taylorInvSqrt(vec4 r){return 1.79284291400159 - 0.85373472095314 * r;}
+    float snoise(vec3 v){
+      const vec2 C = vec2(1.0/6.0, 1.0/3.0);
+      const vec4 D = vec4(0.0,0.5,1.0,2.0);
+      vec3 i  = floor(v + dot(v, C.yyy));
+      vec3 x0 = v - i + dot(i, C.xxx);
+      vec3 g = step(x0.yzx, x0.xyz);
+      vec3 l = 1.0 - g;
+      vec3 i1 = min(g.xyz, l.zxy);
+      vec3 i2 = max(g.xyz, l.zxy);
+      vec3 x1 = x0 - i1 + C.xxx;
+      vec3 x2 = x0 - i2 + C.yyy;
+      vec3 x3 = x0 - D.yyy;
+      i = mod289(i);
+      vec4 p = permute(permute(permute(
+                i.z + vec4(0.0, i1.z, i2.z, 1.0))
+              + i.y + vec4(0.0, i1.y, i2.y, 1.0))
+              + i.x + vec4(0.0, i1.x, i2.x, 1.0));
+      float n_ = 0.142857142857;
+      vec3 ns = n_ * D.wyz - D.xzx;
+      vec4 j = p - 49.0 * floor(p * ns.z * ns.z);
+      vec4 x_ = floor(j * ns.z);
+      vec4 y_ = floor(j - 7.0 * x_);
+      vec4 x = x_ *ns.x + ns.yyyy;
+      vec4 y = y_ *ns.x + ns.yyyy;
+      vec4 h = 1.0 - abs(x) - abs(y);
+      vec4 b0 = vec4(x.xy, y.xy);
+      vec4 b1 = vec4(x.zw, y.zw);
+      vec4 s0 = floor(b0)*2.0 + 1.0;
+      vec4 s1 = floor(b1)*2.0 + 1.0;
+      vec4 sh = -step(h, vec4(0.0));
+      vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy;
+      vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww;
+      vec3 p0 = vec3(a0.xy,h.x);
+      vec3 p1 = vec3(a0.zw,h.y);
+      vec3 p2 = vec3(a1.xy,h.z);
+      vec3 p3 = vec3(a1.zw,h.w);
+      vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2,p2), dot(p3,p3)));
+      p0 *= norm.x; p1 *= norm.y; p2 *= norm.z; p3 *= norm.w;
+      vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);
+      m = m * m;
+      return 42.0 * dot(m*m, vec4(dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3)));
+    }
+  `;
+
+  const uniforms = {
+    uTime:{value:0},
+    uMouse:{value:new THREE.Vector2(0,0)},
+    uColorA:{value:new THREE.Color(0x61456a)},
+    uColorB:{value:new THREE.Color(0xa97fb5)},
+  };
+
+  const blobMat = new THREE.ShaderMaterial({
+    uniforms,
+    vertexShader: `
+      ${noiseGLSL}
+      uniform float uTime; uniform vec2 uMouse;
+      varying float vNoise;
+      varying vec3 vNormal;
+      void main(){
+        vNormal = normal;
+        float n = snoise(position * 1.15 + uTime * 0.18);
+        float mouseInfluence = (uMouse.x*normal.x + uMouse.y*normal.y) * 0.25;
+        float displacement = n * 0.35 + mouseInfluence;
+        vNoise = n;
+        vec3 newPos = position + normal * displacement;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(newPos, 1.0);
+      }
+    `,
+    fragmentShader: `
+      uniform vec3 uColorA; uniform vec3 uColorB;
+      varying float vNoise;
+      varying vec3 vNormal;
+      void main(){
+        float fresnel = pow(1.0 - abs(vNormal.z), 2.2);
+        vec3 base = mix(uColorA, uColorB, clamp(vNoise*0.5+0.5,0.0,1.0));
+        vec3 color = base + fresnel * 0.5;
+        gl_FragColor = vec4(color, 0.92);
+      }
+    `,
+    transparent:true,
+  });
+
+  const blob = new THREE.Mesh(new THREE.IcosahedronGeometry(1.7, 64), blobMat);
+  scene.add(blob);
+
+  // thin orbiting wireframe rings — restrained, not a generic particle swarm
+  const rings = [];
+  [2.35, 2.75, 3.15].forEach((r,i)=>{
+    const ring = new THREE.Mesh(
+      new THREE.TorusGeometry(r, 0.004, 8, 120),
+      new THREE.MeshBasicMaterial({color:0x8a6a93, transparent:true, opacity:0.35 - i*0.08})
+    );
+    ring.rotation.x = Math.PI/2.4 + i*0.3;
+    ring.rotation.y = i*0.6;
+    scene.add(ring);
+    rings.push(ring);
+  });
+
+  const ambient = new THREE.AmbientLight(0xffffff, 0.6);
+  scene.add(ambient);
+
+  let mouseX=0, mouseY=0;
+  window.addEventListener('mousemove', e=>{
+    mouseX = (e.clientX/innerWidth)*2 - 1;
+    mouseY = -(e.clientY/innerHeight)*2 + 1;
+  });
+
+  let scrollFactor = 0;
+  ScrollTrigger.create({
+    trigger:'#hero', start:'top top', end:'bottom top',
+    onUpdate: self => scrollFactor = self.progress
+  });
+
+  const clock = new THREE.Clock();
+  function animate(){
+    requestAnimationFrame(animate);
+    const t = clock.getElapsedTime();
+    uniforms.uTime.value = reduceMotion ? t*0.15 : t;
+    uniforms.uMouse.value.set(mouseX, mouseY);
+    blob.rotation.y = t*0.08 + mouseX*0.15;
+    blob.rotation.x = mouseY*0.1;
+    blob.position.y = -scrollFactor*1.2;
+    rings.forEach((r,i)=>{ r.rotation.z = t*0.05*(i+1); r.position.y = -scrollFactor*1.2; });
+    camera.position.x += (mouseX*0.4 - camera.position.x)*0.03;
+    camera.lookAt(0,0,0);
+    renderer.render(scene, camera);
+  }
+  animate();
+})();
+
+})();
+</script>
+</body>
+</html>
